@@ -8,7 +8,7 @@ trait Response
 {
     protected $data = [];
 
-    protected $headers = [];
+    protected $resHeaders = [];
 
     protected $statusCode = 200;
 
@@ -31,10 +31,10 @@ trait Response
         }
     }
 
-    public function setHeaders(array $headers)
+    public function setResHeaders(array $resHeaders)
     {
-        foreach ($headers as $key => $value) {
-            $this->headers[$key] = $value;
+        foreach ($resHeaders as $key => $value) {
+            $this->resHeaders[$key] = $value;
         }
 
         return $this;
@@ -106,6 +106,6 @@ trait Response
             }
         }
 
-        return response()->json($data, $this->statusCode, $this->headers);
+        return response()->json($data, $this->statusCode, $this->resHeaders);
     }
 }

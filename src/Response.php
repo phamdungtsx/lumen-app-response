@@ -2,7 +2,7 @@
 
 namespace Phamdungtsx;
 
-use App\Exceptions\AppException;
+use Phamdungtsx\Exceptions\AppException;
 
 trait Response
 {

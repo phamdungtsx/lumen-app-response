@@ -13,12 +13,18 @@ use Throwable;
 
 class AppHandler extends ExceptionHandler
 {
+    use Response;
+
     /**
      * A list of the exception types that should not be reported.
      *
      * @var array
      */
     protected $dontReport = [
+        AuthorizationException::class,
+        HttpException::class,
+        ModelNotFoundException::class,
+        ValidationException::class,
     ];
 
     /**
@@ -26,10 +32,12 @@ class AppHandler extends ExceptionHandler
      *
      * This is a great spot to send exceptions to Sentry, Bugsnag, etc.
      *
-     * @param  \Exception  $exception
+     * @param \Throwable $exception
      * @return void
+     *
+     * @throws \Exception
      */
-    public function report(Exception $exception)
+    public function report(Throwable $exception)
     {
         parent::report($exception);
     }
@@ -37,12 +45,20 @@ class AppHandler extends ExceptionHandler
     /**
      * Render an exception into an HTTP response.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Exception  $exception
-     * @return \Illuminate\Http\Response
+     * @param \Illuminate\Http\Request $request
+     * @param Throwable $exception
+     * @return \Illuminate\Http\Response|\Illuminate\Http\JsonResponse
+     *
      */
-    public function render($request, Exception $exception)
+    public function render($request, Throwable $exception)
     {
+//        echo $exception instanceof RuntimeException ? 'RuntimeException':'-';
+//        echo $exception instanceof HttpResponseException ? 'HttpResponseException':'-';
+//        echo $exception instanceof ValidationException ? 'ValidationException':'-';
+//        echo $exception instanceof NotFoundHttpException ? 'NotFoundHttpException':'-';
+//        echo $exception instanceof AppException ? 'AppException':'-';
+//        echo $exception instanceof \Exception ? '\Exception':'-';
+
         if ($exception instanceof NotFoundHttpException) {
             $this->setStatusCode(404)
                  ->setMessage($exception->getMessage())
@@ -58,5 +74,4 @@ class AppHandler extends ExceptionHandler
 
         return $this->getResponse();
     }
-
 }

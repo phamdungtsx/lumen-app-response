@@ -53,18 +53,14 @@ trait Response
 
     public function addErrors(array $errors)
     {
-        foreach ($errors as $key => $value) {
-            $this->errors[$key] = $value;
-        }
+        $this->errors = $errors;
 
         return $this;
     }
 
     public function addValidations(array $validations)
     {
-        foreach ($validations as $key => $value) {
-            $this->validations[$key] = $value;
-        }
+        $this->validations = $validations;
 
         return $this;
     }

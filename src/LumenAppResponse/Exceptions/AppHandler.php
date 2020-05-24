@@ -64,10 +64,7 @@ class AppHandler extends ExceptionHandler
                  ->setException($exception);
         } else if ($exception instanceof ValidatorException) {
             $this->setStatusCode(422)
-                 ->addValidations([
-                     'test1' => 'ok',
-                     'test2' => 'fail'
-                 ])
+                 ->addValidations($exception->getValidations())
                  ->setException($exception);
         } else if ($exception instanceof AppException) {
             $this->setStatusCode($exception->getStatusCode())

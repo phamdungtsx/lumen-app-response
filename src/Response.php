@@ -19,6 +19,8 @@ trait Response
     protected $exception;
 
     public static $CODE = [
+        200 => 'OK',
+        403 => 'FORBIDDEN',
         404 => 'NOT_FOUND',
         422 => 'UNPROCESSABLE_ENTITY',
         500 => 'INTERNAL_SERVER_ERROR',

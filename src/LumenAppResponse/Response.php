@@ -1,8 +1,8 @@
 <?php
 
-namespace Phamdungtsx;
+namespace Phamdungtsx\LumenAppResponse;
 
-use Phamdungtsx\Exceptions\AppException;
+use Phamdungtsx\LumenAppResponse\Exceptions\AppException;
 
 trait Response
 {

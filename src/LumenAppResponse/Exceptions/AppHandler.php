@@ -1,8 +1,8 @@
 <?php
 
-namespace Phamdungtsx\Exceptions;
+namespace Phamdungtsx\LumenAppResponse\Exceptions;
 
-use Phamdungtsx\Response;
+use Phamdungtsx\LumenAppResponse\Response;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Validation\ValidationException;

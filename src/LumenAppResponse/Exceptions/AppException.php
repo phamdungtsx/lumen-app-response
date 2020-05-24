@@ -1,6 +1,6 @@
 <?php
 
-namespace Phamdungtsx\Exceptions;
+namespace Phamdungtsx\LumenAppResponse\Exceptions;
 
 use Exception;
 

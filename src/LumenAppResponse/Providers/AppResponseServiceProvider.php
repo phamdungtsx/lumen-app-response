@@ -1,8 +1,8 @@
 <?php
 
-namespace Phamdungtsx\Providers;
+namespace Phamdungtsx\LumenAppResponse\Providers;
 
-use Phamdungtsx\Exceptions\AppHandler;
+use Phamdungtsx\LumenAppResponse\Exceptions\AppHandler;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Contracts\Debug\ExceptionHandler;
 

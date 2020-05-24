@@ -6,6 +6,7 @@ use Phamdungtsx\Response;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Validation\ValidationException;
+use Illuminate\Validation\UnauthorizedException;
 use Laravel\Lumen\Exceptions\Handler as ExceptionHandler;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -53,6 +54,11 @@ class AppHandler extends ExceptionHandler
     public function render($request, Throwable $exception)
     {
         if ($exception instanceof NotFoundHttpException) {
+            $this->setStatusCode(403)
+                 ->setMessage($exception->getMessage())
+                 ->setException($exception);
+        }
+        else if ($exception instanceof UnauthorizedException) {
             $this->setStatusCode(404)
                  ->setMessage($exception->getMessage())
                  ->setException($exception);

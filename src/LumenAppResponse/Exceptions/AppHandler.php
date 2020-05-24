@@ -62,14 +62,14 @@ class AppHandler extends ExceptionHandler
             $this->setStatusCode(404)
                  ->setMessage($exception->getMessage())
                  ->setException($exception);
-        } else if ($exception instanceof AppException) {
-            $this->setStatusCode($exception->getStatusCode())
-                 ->setMessage($exception->getMessage())
-                 ->setException($exception);
         } else if ($exception instanceof ValidatorException) {
             return $exception->getValidations();
             $this->setStatusCode(422)
                  ->addValidations($exception->getValidations())
+                 ->setException($exception);
+        } else if ($exception instanceof AppException) {
+            $this->setStatusCode($exception->getStatusCode())
+                 ->setMessage($exception->getMessage())
                  ->setException($exception);
         } else if ($exception instanceof \Exception) {
             $this->setStatusCode(500)

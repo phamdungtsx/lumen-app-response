@@ -12,9 +12,9 @@ trait Response
 
     protected $statusCode = 200;
 
-    protected $errors = [];
+    protected $errors = null;
 
-    protected $validations = [];
+    protected $validations = null;
 
     protected $message;
 
@@ -94,12 +94,8 @@ trait Response
         }
         $e = $this->exception;
 
-        if ($this->errors) {
-            $data['error']['errors'] = $this->errors;
-        }
-        if ($this->validations) {
-            $data['error']['validations'] = $this->validations;
-        }
+        $data['error']['errors'] = $this->errors;
+        $data['error']['validations'] = $this->validations;
 
         if ($e && $e instanceof \Exception) {
 

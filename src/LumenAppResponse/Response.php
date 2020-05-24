@@ -86,27 +86,26 @@ trait Response
     public function getResponse()
     {
         $data = [];
+        $data['error'] = null;
+        $data['data'] = null;
 
         if ($this->data) {
             $data['data'] = $this->data;
         }
         $e = $this->exception;
 
+        if ($this->errors) {
+            $data['error']['errors'] = $this->errors;
+        }
+        if ($this->validations) {
+            $data['error']['validations'] = $this->validations;
+        }
+
         if ($e && $e instanceof \Exception) {
 
-            if ($this->errors || $this->validations || $e) {
-                $errorCode     = $e->getCode() ?? $this->statusCode;
-                $data['error'] = [
-                    'code'    => $errorCode ?: $this->statusCode,
-                    'message' => $this->message,
-                ];
-                if ($this->errors) {
-                    $data['error']['errors'] = $this->errors;
-                }
-                if ($this->validations) {
-                    $data['error']['validations'] = $this->validations;
-                }
-            }
+            $errorCode     = $e->getCode() ?? $this->statusCode;
+            $data['error']['code']    = $errorCode ?: $this->statusCode;
+            $data['error']['message'] = $this->message;
 
             if (env('APP_DEBUG') === true) {
                 $data['debug'] = [

@@ -12,9 +12,9 @@ trait Response
 
     protected $statusCode = 200;
 
-    protected $errors;
+    protected $errors = [];
 
-    protected $validations;
+    protected $validations = [];
 
     protected $message;
 

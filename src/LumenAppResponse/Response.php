@@ -90,8 +90,12 @@ trait Response
         }
         $e = $this->exception;
 
-        $data['error']['errors'] = $this->errors;
-        $data['error']['validations'] = $this->validations;
+        if($this->errors) {
+            $data['error']['errors'] = $this->errors;
+        }
+        if($this->validations) {
+            $data['error']['validations'] = $this->validations;
+        }
 
         if ($e && $e instanceof \Exception) {
 

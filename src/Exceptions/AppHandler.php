@@ -55,7 +55,7 @@ class AppHandler extends ExceptionHandler
     {
         if ($exception instanceof UnauthorizedException) {
             $this->setStatusCode(403)
-                 ->setMessage($exception->getMessage())
+                 ->setMessage(trans('auth.unauthorized'))
                  ->setException($exception);
         }
         else if ($exception instanceof NotFoundHttpException) {

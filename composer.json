@@ -1,0 +1,18 @@
+{
+    "name": "phamdungtsx/lumen-app-response",
+    "description": "Custom Response for Lumen framework.",
+    "keywords": [
+        "custom response",
+        "lumen"
+    ],
+    "license": "MIT",
+    "type": "project",
+    "require": {
+        "php": ">=7.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Phamdungtsx\\": "src/"
+        }
+    }
+}

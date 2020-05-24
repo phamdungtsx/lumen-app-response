@@ -30,16 +30,12 @@ trait Response
 
     public function addData($data)
     {
-        foreach ($data as $key => $value) {
-            $this->data[$key] = $value;
-        }
+        $this->data = $data;
     }
 
     public function setResHeaders(array $resHeaders)
     {
-        foreach ($resHeaders as $key => $value) {
-            $this->resHeaders[$key] = $value;
-        }
+        $this->resHeaders = $resHeaders;
 
         return $this;
     }

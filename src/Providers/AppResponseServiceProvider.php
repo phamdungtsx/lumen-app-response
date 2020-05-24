@@ -2,7 +2,7 @@
 
 namespace Phamdungtsx\Providers;
 
-use App\Exceptions\AppHandler;
+use Phamdungtsx\Exceptions\AppHandler;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Contracts\Debug\ExceptionHandler;
 

@@ -52,13 +52,6 @@ class AppHandler extends ExceptionHandler
      */
     public function render($request, Throwable $exception)
     {
-//        echo $exception instanceof RuntimeException ? 'RuntimeException':'-';
-//        echo $exception instanceof HttpResponseException ? 'HttpResponseException':'-';
-//        echo $exception instanceof ValidationException ? 'ValidationException':'-';
-//        echo $exception instanceof NotFoundHttpException ? 'NotFoundHttpException':'-';
-//        echo $exception instanceof AppException ? 'AppException':'-';
-//        echo $exception instanceof \Exception ? '\Exception':'-';
-
         if ($exception instanceof NotFoundHttpException) {
             $this->setStatusCode(404)
                  ->setMessage($exception->getMessage())

@@ -94,7 +94,7 @@ trait Response
 
         if ($e && $e instanceof \Exception) {
 
-            if ($this->errors || $e) {
+            if ($this->errors || $this->validations || $e) {
                 $errorCode     = $e->getCode() ?? $this->statusCode;
                 $data['error'] = [
                     'code'    => $errorCode ?: $this->statusCode,

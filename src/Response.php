@@ -14,6 +14,8 @@ trait Response
 
     protected $errors;
 
+    protected $validations;
+
     protected $message;
 
     protected $exception;
@@ -58,6 +60,15 @@ trait Response
         return $this;
     }
 
+    public function addValidations(array $validations)
+    {
+        foreach ($validations as $key => $value) {
+            $this->validations[$key] = $value;
+        }
+
+        return $this;
+    }
+
     public function setMessage($message)
     {
         $this->message = $message ? $message : self::$CODE[$this->statusCode];
@@ -91,6 +102,9 @@ trait Response
                 ];
                 if ($this->errors) {
                     $data['error']['errors'] = $this->errors;
+                }
+                if ($this->validations) {
+                    $data['error']['validations'] = $this->validations;
                 }
             }
 

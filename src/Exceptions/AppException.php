@@ -10,6 +10,8 @@ class AppException extends Exception
 
     protected $message = null;
 
+    protected $errors = null;
+
     protected $statusCode = 500;
 
     protected $privateMessage;
@@ -22,6 +24,26 @@ class AppException extends Exception
     public function getStatusCode()
     {
         return $this->statusCode;
+    }
+
+    public function getErrors()
+    {
+        return $this->errors;
+    }
+
+    public function setErrors(array $errors)
+    {
+        $this->errors = $errors;
+    }
+
+    public function getValidations()
+    {
+        return $this->validations;
+    }
+
+    public function setValidations(array $validations)
+    {
+        $this->validations = $validations;
     }
 
     public function setStatusCode(int $code)

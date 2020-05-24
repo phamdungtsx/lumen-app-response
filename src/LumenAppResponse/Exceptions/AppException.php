@@ -12,6 +12,8 @@ class AppException extends Exception
 
     protected $errors = null;
 
+    protected $validations = null;
+
     protected $statusCode = 500;
 
     protected $privateMessage;

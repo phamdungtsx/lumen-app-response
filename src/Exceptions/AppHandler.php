@@ -53,12 +53,12 @@ class AppHandler extends ExceptionHandler
      */
     public function render($request, Throwable $exception)
     {
-        if ($exception instanceof NotFoundHttpException) {
+        if ($exception instanceof UnauthorizedException) {
             $this->setStatusCode(403)
                  ->setMessage($exception->getMessage())
                  ->setException($exception);
         }
-        else if ($exception instanceof UnauthorizedException) {
+        else if ($exception instanceof NotFoundHttpException) {
             $this->setStatusCode(404)
                  ->setMessage($exception->getMessage())
                  ->setException($exception);

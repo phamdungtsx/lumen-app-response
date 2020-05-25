@@ -81,7 +81,7 @@ trait Response
 
         $e = $this->exception;
 
-        if ($e && $e instanceof \Exception) {
+        if($this->errors || $this->validations || $this->message) {
             $data['error'] = null;
 
             if($this->errors) {
@@ -90,10 +90,15 @@ trait Response
             if($this->validations) {
                 $data['error']['validations'] = $this->validations;
             }
+            if($this->message) {
+                $data['error']['message'] = $this->message;
+            }
+        }
 
+        if ($e && $e instanceof \Exception) {
+            
             $errorCode     = $e->getCode() ?? $this->statusCode;
             $data['error']['code']    = $errorCode ?: $this->statusCode;
-            $data['error']['message'] = $this->message;
 
             if (env('APP_DEBUG') === true) {
                 $data['debug'] = [

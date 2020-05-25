@@ -78,7 +78,6 @@ trait Response
     public function getResponse()
     {
         $data = [];
-        $data['error'] = null;
         $data['data'] = null;
 
         if ($this->data) {
@@ -86,14 +85,17 @@ trait Response
         }
         $e = $this->exception;
 
-        if($this->errors) {
-            $data['error']['errors'] = $this->errors;
-        }
-        if($this->validations) {
-            $data['error']['validations'] = $this->validations;
-        }
+        
 
         if ($e && $e instanceof \Exception) {
+            $data['error'] = null;
+
+            if($this->errors) {
+                $data['error']['errors'] = $this->errors;
+            }
+            if($this->validations) {
+                $data['error']['validations'] = $this->validations;
+            }
 
             $errorCode     = $e->getCode() ?? $this->statusCode;
             $data['error']['code']    = $errorCode ?: $this->statusCode;

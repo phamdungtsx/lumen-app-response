@@ -80,9 +80,6 @@ trait Response
         $data = [];
         $data['data'] = null;
 
-        if ($this->data) {
-            $data['data'] = $this->data;
-        }
         $e = $this->exception;
 
         
@@ -115,6 +112,10 @@ trait Response
             }
         }
 
+        if ($this->data) {
+            $data['data'] = $this->data;
+        }
+        
         return response()->json($data, $this->statusCode, $this->resHeaders);
     }
 }

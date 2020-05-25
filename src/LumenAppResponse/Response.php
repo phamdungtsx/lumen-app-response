@@ -69,7 +69,7 @@ trait Response
         return $this;
     }
 
-    public function setException(\Exception $e)
+    public function setException(Throwable $e)
     {
         $this->exception = $e;
 

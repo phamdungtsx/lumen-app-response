@@ -3,6 +3,7 @@
 namespace Phamdungtsx\LumenAppResponse;
 
 use Phamdungtsx\LumenAppResponse\Exceptions\AppException;
+use ArgumentCountError;
 
 trait Response
 {
@@ -83,7 +84,7 @@ trait Response
 
         
 
-        if ($e && $e instanceof \Exception) {
+        if ($e && ($e instanceof \Exception || $e instanceof ArgumentCountError)) {
             $data['error'] = null;
 
             if($this->errors) {

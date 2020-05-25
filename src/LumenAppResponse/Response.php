@@ -78,7 +78,6 @@ trait Response
     public function getResponse()
     {
         $data = [];
-        $data['data'] = null;
 
         $e = $this->exception;
 
@@ -112,10 +111,12 @@ trait Response
             }
         }
 
+        $data['data'] = null;
+
         if ($this->data) {
             $data['data'] = $this->data;
         }
-        
+
         return response()->json($data, $this->statusCode, $this->resHeaders);
     }
 }

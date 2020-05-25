@@ -56,24 +56,27 @@ class AppHandler extends ExceptionHandler
     {
         if ($exception instanceof UnauthorizedException) {
             $this->setStatusCode(403)
-                 ->setMessage(trans('auth.unauthorized'))
-                 ->setException($exception);
+                ->setMessage(trans('auth.unauthorized'))
+                ->setException($exception);
         }
         else if ($exception instanceof NotFoundHttpException) {
             $this->setStatusCode(404)
-                 ->setMessage($exception->getMessage())
-                 ->setException($exception);
+                ->setMessage($exception->getMessage())
+                ->setException($exception);
         } else if ($exception instanceof ValidatorException) {
             $this->setStatusCode(422)
-                 ->addValidations($exception->getValidations())
-                 ->setException($exception);
+                ->addValidations($exception->getValidations())
+                ->setException($exception);
         } else if ($exception instanceof AppException) {
             $this->setStatusCode($exception->getStatusCode())
-                 ->setMessage($exception->getMessage())
-                 ->setException($exception);
-        } else if ($exception instanceof \Exception || $exception instanceof ArgumentCountError) {
+                ->setMessage($exception->getMessage())
+                ->setException($exception);
+        } else if ($exception instanceof \Exception) {
             $this->setStatusCode(500)
-                 ->setException($exception);
+                ->setException($exception);
+        } else if ($exception instanceof ArgumentCountError) {
+            $this->setStatusCode(500)
+                ->setMessage($exception->getMessage());
         }
 
         return $this->getResponse();

@@ -11,7 +11,6 @@ use Laravel\Lumen\Exceptions\Handler as ExceptionHandler;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Throwable;
-use ArgumentCountError;
 
 class AppHandler extends ExceptionHandler
 {
@@ -74,7 +73,7 @@ class AppHandler extends ExceptionHandler
         } else if ($exception instanceof \Exception) {
             $this->setStatusCode(500)
                 ->setException($exception);
-        } else if ($exception instanceof ArgumentCountError) {
+        } else if ($exception instanceof Throwable) {
             $this->setStatusCode(500)
                 ->setMessage($exception->getMessage());
         }

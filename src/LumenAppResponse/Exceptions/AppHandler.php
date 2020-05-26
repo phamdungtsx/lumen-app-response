@@ -70,12 +70,11 @@ class AppHandler extends ExceptionHandler
             $this->setStatusCode($exception->getStatusCode())
                 ->setMessage($exception->getMessage())
                 ->setException($exception);
-        } else if ($exception instanceof \Exception) {
+        }else if ($exception instanceof Throwable) {
+            $appException = new AppException();
+            $appException->setPrivateMessage($exception->getMessage());
             $this->setStatusCode(500)
-                ->setException($exception);
-        } else if ($exception instanceof Throwable) {
-            $this->setStatusCode(500)
-                ->setMessage($exception->getMessage());
+                 ->setException($appException);
         }
 
         return $this->getResponse();
